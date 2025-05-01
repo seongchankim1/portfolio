@@ -131,33 +131,33 @@
     </div>
 
     <h2 data-aos="fade-up">트러블슈팅</h2>
+      <div class="card" data-aos="fade-up">
+        <div class="card-title">게시글 페이징 처리 개선</div>
+        <p><strong>문제점:</strong> 대용량 게시글 조회 시 단순 오프셋 기반 페이징으로 인해 불필요한 데이터 스캔과 응답 지연 발생</p>
+        <p><strong>대안 목록:</strong></p>
+        <ul>
+          <li>오프셋 방식: 페이지 번호가 커질수록 전체 스캔 발생</li>
+          <li>로우셋 방식: WHERE 절 기반 조건 조회를 통해 필요한 데이터만 빠르게 조회 가능</li>
+          <li>@Cacheable: 자주 조회되는 결과 캐싱</li>
+        </ul>
+        <p><strong>선택:</strong> 로우셋 페이징 기법 도입 및 @Cacheable 로 캐싱 처리</p>
+        <p><strong>구현:</strong> SQL 쿼리를 재구성하여, 마지막 조회 항목의 ID 기준 이후 데이터만 조회하도록 변경</p>
+        <p><strong>결과:</strong> 게시글 조회 응답 시간이 평균 1.5초 → 0.5초로 단축</p>
+      </div>
 
-    <div class="card" data-aos="fade-up">
-      <div class="card-title">게시글 페이징 처리 개선</div>
-      <p><strong>문제점:</strong> 대용량 게시글 조회 시 오프셋 기반 페이징으로 불필요한 데이터 스캔과 지연 발생</p>
-      <p><strong>대안 목록:</strong></p>
-      <ul>
-        <li>오프셋 방식 – 페이지 번호 증가 시 전체 스캔 발생</li>
-        <li>로우셋 방식 – WHERE 절 기반 조건 조회로 필요한 데이터만 조회</li>
-        <li>@Cacheable – 자주 조회되는 결과 캐싱</li>
-      </ul>
-      <p><strong>구현:</strong> 마지막 조회 ID 기준 이후 데이터만 조회하도록 쿼리 재구성</p>
-      <p><strong>결과:</strong> 평균 응답 시간 1.5초 → 0.5초 단축</p>
-    </div>
-
-    <div class="card" data-aos="fade-up" data-aos-delay="100">
-      <div class="card-title">읽기/쓰기 분리 및 CQRS 최적화</div>
-      <p><strong>문제점:</strong> 단일 DB 환경에서 읽기·쓰기 충돌로 성능 저하 발생</p>
-      <p><strong>대안 목록:</strong></p>
-      <ul>
-        <li>단일 DB + 캐시 – 일관성 관리 이슈</li>
-        <li>마스터-슬레이브 구조 – 읽기·쓰기 분리 가능</li>
-        <li>CQRS 패턴 – 완전 분리, 복잡성 증가</li>
-      </ul>
-      <p><strong>선택:</strong> CQRS 도입 및 이벤트 기반 동기화</p>
-      <p><strong>구현:</strong> 쓰기 작업은 마스터 DB, 읽기는 슬레이브 DB로 분리</p>
-      <p><strong>결과:</strong> 읽기 응답 40% 단축, 처리량 30% 이상 향상</p>
-    </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-title">읽기/쓰기 분리 및 CQRS 최적화</div>
+        <p><strong>문제점:</strong> 단일 데이터베이스를 사용하여 읽기와 쓰기가 동시에 이루어지면, 무거운 읽기 쿼리와 쓰기 작업이 충돌하여 응답 지연 및 처리량 저하 발생</p>
+        <p><strong>대안 목록:</strong></p>
+        <ul>
+          <li>단일 DB + 캐싱: 구현은 간단하지만, 읽기 부하가 증가하면 캐시 일관성 관리에 어려움</li>
+          <li>읽기/쓰기 분리 (마스터-슬레이브): 읽기 전용 슬레이브 DB 도입 시, 쓰기와 읽기가 분리되어 성능 개선 가능</li>
+          <li>CQRS 패턴 도입: 쓰기와 읽기를 완전히 분리하여 최적화할 수 있으나, 복잡한 아키텍처 설계 필요</li>
+        </ul>
+        <p><strong>선택:</strong> 읽기 전용 DB(슬레이브)와 쓰기 전용 DB(마스터)를 분리하는 CQRS 패턴 도입 및 이벤트 기반 동기화</p>
+        <p><strong>구현:</strong> 쓰기 작업은 마스터 DB에만 적용하고, 읽기 작업은 슬레이브 DB로 분리</p>
+        <p><strong>결과:</strong> 읽기 쿼리 응답 시간이 약 40% 단축, 전체 시스템 처리량이 30% 이상 개선</p>
+      </div>
   </section>
 </main>
 

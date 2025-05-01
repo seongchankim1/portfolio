@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>이츠마인 | 포트폴리오</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header>
+    <h1>이츠마인</h1>
+    <nav>
+      <a href="index.html">← Home</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>경매를 통한 중고거래 시스템</h2>
+    <p><strong>기간</strong> : 24.07 ~ 24.08 (5주) / <strong>인원</strong> : 5명 (BE)</p>
+    <p>
+      간단한 시연 영상 ▶ 
+      <a href="https://youtu.be/ZirbEetGmtY" target="_blank">YouTube</a><br>
+      코드 저장소 ▶ 
+      <a href="https://github.com/11-itsmine/itsmine" target="_blank">GitHub</a><br>
+      기획 문서 ▶ 
+      <a href="https://www.notion.so/faf10b31eec04c97a18819caad6e1a54?pvs=21" target="_blank">Notion</a>
+    </p>
+
+    <section>
+      <h3>💻 개발 환경</h3>
+      <ul>
+        <li>Java 17 / IntelliJ / Spring Boot 3.3.0 / JPA</li>
+        <li>AWS EC2, Docker, ECR, RDS(MariaDB), ElastiCache(Redis), S3, CloudFront</li>
+        <li>AmazonMQ (RabbitMQ, ActiveMQ), React, Slack, Zoom, Figma</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>⚙️ 주요 기술</h3>
+      <h4>상품/경매</h4>
+      <ul>
+        <li>Redis 분산 락 (Redisson + AOP/Annotation)</li>
+        <li>RabbitMQ TTL/DLX 활용 (경매 만료 자동화)</li>
+        <li>@Index, @Cacheable, QueryDSL으로 DB 성능 최적화</li>
+      </ul>
+
+      <h4>회원가입/로그인</h4>
+      <ul>
+        <li>Redis Lettuce를 통한 토큰 관리</li>
+        <li>카카오 소셜 로그인 (JWT/Refresh Token)</li>
+      </ul>
+
+      <h4>실시간 채팅</h4>
+      <ul>
+        <li>ActiveMQ, Async 처리, wss (Nginx 웹소켓 설정)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 김성찬</p>
+  </footer>
+</body>
+</html>

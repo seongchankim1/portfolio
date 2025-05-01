@@ -1,64 +1,208 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>이츠마인 | 포트폴리오</title>
-  <link rel="stylesheet" href="assets/style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이츠마인 프로젝트 - 김성찬 포트폴리오</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css" />
+    <!-- AOS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+    <!-- Prism -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Noto Sans KR',sans-serif; background:linear-gradient(145deg,#f0f4f8,#e2e8f0); overflow-x:hidden; padding-top:100px; }
+        header {
+            position:fixed; top:0; width:100%; z-index:100;
+            background: linear-gradient(90deg, #1e3c72, #667db6);
+            color: #fff;
+            backdrop-filter:blur(10px);
+            transition:padding 0.3s, background 0.3s;
+            padding:1.5rem 1rem;
+            display:flex; flex-direction:column; align-items:center; justify-content:center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        header.shrink { padding:0.8rem 1rem; background:linear-gradient(90deg, #12243f, #445d8c); }
+        .logo {
+            font-size:2rem;
+            font-weight:700;
+            color:#fff;
+            text-shadow:0 2px 5px rgba(0,0,0,0.3);
+            margin-bottom:0.5rem;
+        }
+        nav ul { display:flex; gap:2rem; list-style:none; }
+        nav a { position:relative; color:#fff; font-weight:500; text-decoration:none; padding:0.5rem;
+            transition:color 0.3s;
+        }
+        nav a::after {
+            content:''; position:absolute; bottom:0; left:0;
+            width:0; height:2px; background:#00e0ff;
+            transition:width 0.3s;
+        }
+        nav a:hover { color:#00e0ff; }
+        nav a:hover::after { width:100%; }
+        main { max-width:1000px; margin:0 auto; }
+        section { margin:4rem 1.5rem; padding:2rem; background:#fff; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
+        .info-box { display:flex; flex-direction:column; gap:0.5rem; padding:1rem; background:#f4f7fb; border:1px solid #dce6f0; border-radius:8px; }
+        .info-box .label { font-weight:bold; color:#007acc; width:4rem; display:inline-block; }
+        h2 { font-size:2rem; border-left:5px solid #3b82f6; padding-left:0.7rem; margin-bottom:1rem; }
+        .project-links a { margin-right:1rem; color:#0066cc; }
+        h3 { margin-top:2.5rem; color:#2c3e50; border-bottom:2px solid #eee; padding-bottom:0.3rem; }
+        .card { background:#f9f9f9; border-left:5px solid #007acc; padding:1rem 1.5rem; margin:1.5rem 0; box-shadow:0 2px 5px rgba(0,0,0,0.05); border-radius:6px; }
+        .card-title { font-size:1.2rem; font-weight:bold; color:#007acc; border-bottom:1px solid #ccc; margin-bottom:1rem; padding-bottom:0.3rem; }
+        ul { padding-left:1.2rem; margin-bottom:1.5rem; }
+        pre { background:#2d2d2d; padding:1rem; overflow-x:auto; border-radius:6px; }
+        code { font-size:0.95rem; color:#f8f8f2; }
+        footer { text-align:center; padding:1rem; margin:4rem 0; background:#f1f5f9; }
+        @media(max-width:600px){ nav ul{flex-direction:column;gap:0.5rem;} }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>이츠마인</h1>
+<header id="header">
+    <div class="logo">김성찬 포트폴리오</div>
     <nav>
-      <a href="index.html">← Home</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="itsmine.html">이츠마인</a></li>
+            <li><a href="projectmanager.html">Project Manager</a></li>
+            <li><a href="kindof.html">킨도프 인턴</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
+<main>
+    <section data-aos="fade-up">
+        <h2 data-aos="fade-right">이츠마인</h2>
+        <div class="info-box" data-aos="zoom-in">
+            <div><span class="label">📌 소개</span>경매를 통한 중고거래 시스템</div>
+            <div><span class="label">🕒 기간</span>2024.07 ~ 2024.08</div>
+            <div><span class="label">👥 인원</span>5명 (BE)</div>
+            <div>
+                <span class="label">🔗 링크</span>
+                <a href="https://youtu.be/ZirbEetGmtY" target="_blank">📺 시연영상</a>
+                <a href="https://github.com/11-itsmine/itsmine" target="_blank">🔗 GitHub</a>
+                <a href="https://www.notion.so/faf10b31eec04c97a18819caad6e1a54?pvs=21" target="_blank">📄 Notion</a>
+            </div>
+        </div>
+        <h3 data-aos="fade-up">주요 기술</h3>
+        <div class="card" data-aos="fade-up">
+            <div class="card-title">상품/경매</div>
+            <ul>
+                <li><strong>Redis 분산 락</strong>
+                    <ul>
+                        <li>Redis Redisson → 입찰 데이터 오류 발생 방지</li>
+                        <li>AOP, 애노테이션화 → 재사용성 증가</li>
+                    </ul>
+                </li>
+                <li><strong>RabbitMQ</strong>
+                    <ul>
+                        <li>TTL, DLX → 경매 만료 시 상태 변경 자동화</li>
+                    </ul>
+                </li>
+                <li><strong>@Index, @cacheable, QueryDSL</strong>
+                    <ul>
+                        <li>데이터베이스 반복 접근 방지</li>
+                        <li>캐시 계층 활용 → 읽기/쓰기 분리로 DB 성능 최적화</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
 
-  <main>
-    <h2>경매를 통한 중고거래 시스템</h2>
-    <p><strong>기간</strong> : 24.07 ~ 24.08 (5주) / <strong>인원</strong> : 5명 (BE)</p>
-    <p>
-      간단한 시연 영상 ▶ 
-      <a href="https://youtu.be/ZirbEetGmtY" target="_blank">YouTube</a><br>
-      코드 저장소 ▶ 
-      <a href="https://github.com/11-itsmine/itsmine" target="_blank">GitHub</a><br>
-      기획 문서 ▶ 
-      <a href="https://www.notion.so/faf10b31eec04c97a18819caad6e1a54?pvs=21" target="_blank">Notion</a>
-    </p>
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-title">회원가입/로그인</div>
+            <ul>
+                <li>Redis Lettuce (DB 조회 최소화 및 JWT/리프레시 토큰 관리)</li>
+                <li>카카오 소셜 로그인 (JWT/리프레시 토큰 관리)</li>
+            </ul>
+        </div>
 
-    <section>
-      <h3>💻 개발 환경</h3>
-      <ul>
-        <li>Java 17 / IntelliJ / Spring Boot 3.3.0 / JPA</li>
-        <li>AWS EC2, Docker, ECR, RDS(MariaDB), ElastiCache(Redis), S3, CloudFront</li>
-        <li>AmazonMQ (RabbitMQ, ActiveMQ), React, Slack, Zoom, Figma</li>
-      </ul>
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-title">실시간 채팅</div>
+            <ul>
+                <li>ActiveMQ, Async 처리, wss (Nginx 웹소켓 설정 적용)</li>
+            </ul>
+        </div>
+    <h3 data-aos="fade-up">트러블슈팅</h3>
+        <div class="card" data-aos="fade-up">
+            <div class="card-title">동시성 문제</div>
+            <p><strong>문제점:</strong> 다수의 사용자가 동시에 입찰하는 과정에서 데이터 충돌 및 값 갱신 오류 발생</p>
+            <p><strong>대안 목록:</strong></p>
+            <ul>
+                <li><strong>데이터베이스 락:</strong> 트랜잭션 내 동시성 보장, 부하 증가</li>
+                <li><strong>synchronized 키워드:</strong> 단일 JVM에만 유효</li>
+                <li><strong>Redis Redisson:</strong> 분산 환경 FairLock 제어</li>
+            </ul>
+            <p><strong>선택:</strong> Redis Redisson FairLock 적용</p>
+            <p><strong>구현:</strong></p>
+            <pre><code class="language-java">public <T> T lock(String lockName, Supplier<T> operation) {
+  RLock lock = redissonClient.getFairLock(lockName);
+  try {
+    boolean isLocked = lock.tryLock(WAIT_TIME, LEASE_TIME, TIME_UNIT);
+    if (!isLocked) throw new IllegalArgumentException("입찰 대기시간 초과");
+    return operation.get();
+  } finally { lock.unlock(); }
+}</code></pre>
+            <p><strong>결과:</strong> 10명 이상의 동시 입찰에서도 데이터 무결성 100% 유지</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-title">분산락 설정 문제</div>
+            <p><strong>문제점:</strong> Repository Delete 시 @Transactional 충돌로 롤백 및 락 해제 실패</p>
+            <p><strong>대안 목록:</strong></p>
+            <ul>
+                <li>기능별 락 관리: 코드 중복 증가</li>
+                <li>AOP Annotation 처리: 공통 관심사 분리</li>
+            </ul>
+            <p><strong>선택:</strong> @DistributedLock 애노테이션 도입</p>
+            <pre><code class="language-java">@Around("@annotation(distributedLock)")
+public Object handleLock(ProceedingJoinPoint jp, DistributedLock dl) throws Throwable {
+  String key = createDynamicKey(jp, dl.key());
+  return lockManager.lock(dl.prefix()+":"+key, () -> jp.proceed());
+}</code></pre>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-title">알림 지연 문제</div>
+            <p><strong>문제점:</strong> 경매 종료 알림 및 상태 변경 지연</p>
+            <p><strong>대안 목록:</strong></p>
+            <ul>
+                <li>스케줄러: 실시간성 부족</li>
+                <li>Kafka: 설정 복잡/지연</li>
+                <li>RabbitMQ TTL & DLX: 자동화된 지연 처리</li>
+            </ul>
+            <p><strong>선택:</strong> RabbitMQ DLX 적용</p>
+            <p><strong>결과:</strong> 응답 시간 800ms → 250ms 단축</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-title">CI/CD 배포 문제</div>
+            <p><strong>문제점:</strong> EC2 Nginx/Front 충돌 및 다운타임</p>
+            <pre><code class="language-nginx">upstream backend {
+  server backend:8080;
+}
+server {
+  listen 443 ssl;
+  location /v1/ { proxy_pass http://backend; }
+}</code></pre>
+            <p><strong>결과:</strong> 무중단 배포 및 충돌 해결</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
+            <div class="card-title">HTTPS 채팅 문제</div>
+            <p><strong>문제점:</strong> ws → wss 미적용으로 실패</p>
+            <p><strong>대안 목록:</strong> wss 적용 + Upgrade 설정</p>
+            <p><strong>결과:</strong> 안정적 실시간 채팅 성공</p>
+        </div>
     </section>
-
-    <section>
-      <h3>⚙️ 주요 기술</h3>
-      <h4>상품/경매</h4>
-      <ul>
-        <li>Redis 분산 락 (Redisson + AOP/Annotation)</li>
-        <li>RabbitMQ TTL/DLX 활용 (경매 만료 자동화)</li>
-        <li>@Index, @Cacheable, QueryDSL으로 DB 성능 최적화</li>
-      </ul>
-
-      <h4>회원가입/로그인</h4>
-      <ul>
-        <li>Redis Lettuce를 통한 토큰 관리</li>
-        <li>카카오 소셜 로그인 (JWT/Refresh Token)</li>
-      </ul>
-
-      <h4>실시간 채팅</h4>
-      <ul>
-        <li>ActiveMQ, Async 처리, wss (Nginx 웹소켓 설정)</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 김성찬</p>
-  </footer>
+</main>
+<footer data-aos="fade-up">
+    &copy; 2025 김성찬 All rights reserved.
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script>
+    AOS.init({ duration:800, once:true });
+    window.addEventListener('scroll',()=>{
+        const h=document.getElementById('header');
+        window.scrollY>50? h.classList.add('shrink'):h.classList.remove('shrink');
+    });
+</script>
 </body>
 </html>

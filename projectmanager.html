@@ -2,47 +2,188 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project Manager | 포트폴리오</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Manager – 김성찬 포트폴리오</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css" />
+  <!-- AOS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+  <!-- Prism -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Noto Sans KR',sans-serif; background:linear-gradient(145deg,#f0f4f8,#e2e8f0); overflow-x:hidden; padding-top:100px; }
+    header {
+      position:fixed; top:0; width:100%; z-index:100;
+      background: linear-gradient(90deg, #1e3c72, #667db6);
+      color: #fff;
+      backdrop-filter:blur(10px);
+      transition:padding 0.3s, background 0.3s;
+      padding:1.5rem 1rem;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    header.shrink { padding:0.8rem 1rem; background:linear-gradient(90deg, #12243f, #445d8c); }
+    .logo {
+      font-size:2rem;
+      font-weight:700;
+      color:#fff;
+      text-shadow:0 2px 5px rgba(0,0,0,0.3);
+      margin-bottom:0.5rem;
+    }
+    nav ul { display:flex; gap:2rem; list-style:none; }
+    nav a { position:relative; color:#fff; font-weight:500; text-decoration:none; padding:0.5rem;
+      transition:color 0.3s;
+    }
+    nav a::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:2px; background:#00e0ff;
+      transition:width 0.3s;
+    }
+    nav a:hover { color:#00e0ff; }
+    nav a:hover::after { width:100%; }
+    main { max-width:1000px; margin:0 auto; }
+    section { margin:4rem 1.5rem; padding:2rem; background:#fff; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
+    .info-box { display:flex; flex-direction:column; gap:0.5rem; padding:1rem; background:#f4f7fb; border:1px solid #dce6f0; border-radius:8px; }
+    .info-box .label { font-weight:bold; color:#007acc; width:4rem; display:inline-block; }
+    h2 { font-size:2rem; border-left:5px solid #3b82f6; padding-left:0.7rem; margin-bottom:1rem; }
+    h3 { margin-top:2.5rem; color:#2c3e50; border-bottom:2px solid #eee; padding-bottom:0.3rem; }
+    .card { background:#f9f9f9; border-left:5px solid #007acc; padding:1rem 1.5rem; margin:1.5rem 0; box-shadow:0 2px 5px rgba(0,0,0,0.05); border-radius:6px; }
+    .card-title { font-size:1.2rem; font-weight:bold; color:#007acc; border-bottom:1px solid #ccc; margin-bottom:1rem; padding-bottom:0.3rem; }
+    ul { padding-left:1.2rem; margin-bottom:1.5rem; }
+    pre { background:#2d2d2d; padding:1rem; overflow-x:auto; border-radius:6px; }
+    code { font-size:0.95rem; color:#f8f8f2; }
+    footer { text-align:center; padding:1rem; margin:4rem 0; background:#f1f5f9; }
+    @media(max-width:600px){ nav ul{flex-direction:column;gap:0.5rem;} }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Project Manager</h1>
-    <nav>
-      <a href="index.html">← Home</a>
-    </nav>
-  </header>
+<header id="header">
+  <div class="logo">김성찬 포트폴리오</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="itsmine.html">이츠마인</a></li>
+      <li><a href="projectmanager.html">Project Manager</a></li>
+      <li><a href="kindof.html">킨도프 인턴</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section data-aos="fade-up">
+    <h2 data-aos="fade-right">Project Manager</h2>
+    <div class="info-box" data-aos="zoom-in">
+      <div><span class="label">📌 소개</span>프로젝트 협업을 위한 작업 시각화 시스템</div>
+      <div><span class="label">🕒 기간</span>2024.12 ~ 2025.04</div>
+      <div><span class="label">👥 인원</span>4명 (BE 2, FE 2)</div>
+      <div><span class="label">🔗 링크</span><a href="https://github.com/kanbanboardpm/projectmanager" target="_blank">GitHub</a></div>
+    </div>
+    <h3 data-aos="fade-up">주요 기술</h3>
 
-  <main>
-    <h2>프로젝트 협업을 위한 작업 시각화 시스템</h2>
-    <p><strong>기간</strong> : 24.12 ~ 진행중 / <strong>인원</strong> : 4명 (BE 2, FE 2)</p>
-    <p>
-      코드 저장소 ▶ 
-      <a href="https://github.com/kanbanboardpm/projectmanager" target="_blank">GitHub</a>
-    </p>
-
-    <section>
-      <h3>주요 기술</h3>
+    <div class="card" data-aos="fade-up">
+      <div class="card-title">CI/CD</div>
       <ul>
-        <li>CI/CD: Google Cloud + GitHub Actions + Docker</li>
-        <li>회원관리: 복합 인덱스 + QueryDSL (N+1 방지), 카카오 소셜 로그인</li>
-        <li>로그: AOP 기반 DB 저장, MySQL 파티셔닝</li>
-        <li>초대 기능: Redis List + JSON 저장</li>
+        <li>GoogleCloud + GitHub Actions(Workflow) + Docker</li>
       </ul>
-    </section>
+    </div>
 
-    <section>
-      <h3>트러블슈팅</h3>
-      <h4>쿼리 최적화</h4>
-      <p>복합 인덱스 + QueryDSL 도입으로 1000만건 조회 시 2~3ms 성능 확보</p>
-      <h4>파티셔닝</h4>
-      <p>RANGE 파티셔닝 적용으로 오래된 데이터 DROP PARTITION으로 0.1초 삭제</p>
-    </section>
-  </main>
+    <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <div class="card-title">회원관리</div>
+      <ul>
+        <li>복합 인덱스 + QueryDSL</li>
+        <li>FetchJoin으로 N+1 문제 방지</li>
+        <li>이름 검색에도 빠른 검색</li>
+        <li>소셜 로그인 (카카오)</li>
+      </ul>
+    </div>
 
-  <footer>
-    <p>&copy; 2025 김성찬</p>
-  </footer>
+    <div class="card" data-aos="fade-up" data-aos-delay="200">
+      <div class="card-title">로그</div>
+      <ul>
+        <li>AOP로 DB 저장</li>
+        <li>MySQL 파티셔닝으로 DB 개선</li>
+        <li>파티션 프루닝</li>
+      </ul>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-aos-delay="300">
+      <div class="card-title">프로젝트</div>
+      <ul>
+        <li>초대 기능</li>
+        <li>Redis에 List 및 JSON 형식 활용 → 한 Key에 다양한 정보 저장</li>
+      </ul>
+    </div>
+
+    <h3 data-aos="fade-up">트러블슈팅</h3>
+
+    <div class="card" data-aos="fade-up">
+      <div class="card-title">쿼리 최적화 및 데이터 접근 개선</div>
+      <p><strong>문제점:</strong> 복잡한 조인 및 연관관계, N+1 문제로 인한 대용량 데이터 조회 성능 저하</p>
+      <p><strong>대안 목록:</strong></p>
+      <ul>
+        <li>단순 Join – 불필요한 전체 스캔 발생</li>
+        <li>복합 인덱스 + QueryDSL – 명확한 인덱스 적용</li>
+        <li>Query Hint – 특정 인덱스 강제 사용, 유지보수 복잡</li>
+      </ul>
+      <p><strong>선택:</strong> 복합 인덱스 추가 및 QueryDSL 활용</p>
+      <p><strong>구현:</strong></p>
+      <pre><code class="language-java">@Table(name = "users", indexes = {
+  @Index(name = "idx_email", columnList = "email"),
+  @Index(name = "idx_nickname", columnList = "nickname")
+})
+public class User extends TimeStamp {}</code></pre>
+      <pre><code class="language-java">@Override
+public List<Authority> findByProjectIdAndUserIds(Long projectId, List<Long> userIds) {
+  return queryFactory
+    .selectFrom(authority)
+    .join(authority.user).fetchJoin()
+    .where(
+      authority.project.id.eq(projectId),
+      authority.user.id.in(userIds)
+    )
+    .fetch();
+}</code></pre>
+      <p><strong>결과:</strong> 1,000만 건 이상 조회 시에도 2~3ms 응답 속도 유지</p>
+    </div>
+
+    <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <div class="card-title">데이터 파티셔닝 및 효율적 관리</div>
+      <p><strong>문제점:</strong> 로그 데이터 누적으로 인한 전체 테이블 스캔 성능 저하</p>
+      <p><strong>대안 목록:</strong></p>
+      <ul>
+        <li>단순 인덱스 튜닝 – 장기적 한계</li>
+        <li>캐싱 – 캐시 관리 복잡도 증가</li>
+        <li><strong>MySQL 파티셔닝:</strong> 월별 RANGE 파티셔닝 도입</li>
+      </ul>
+      <p><strong>구현:</strong></p>
+      <pre><code class="language-sql">CREATE TABLE activity_log (
+  user_id BIGINT,
+  created_at DATETIME NOT NULL,
+  action_type VARCHAR(50),
+  action_detail TEXT,
+  PRIMARY KEY (user_id, created_at)
+)
+PARTITION BY RANGE (YEAR(created_at) * 100 + MONTH(created_at)) (
+  PARTITION p202502 VALUES LESS THAN (202502),
+  PARTITION p202503 VALUES LESS THAN (202503),
+  PARTITION pmax VALUES LESS THAN MAXVALUE
+);</code></pre>
+      <p><strong>결과:</strong> 파티션 프루닝 자동 적용으로 조회 성능 50% 이상 향상 및 대량 데이터 삭제 0.1초 처리</p>
+    </div>
+  </section>
+</main>
+<footer data-aos="fade-up">
+  &copy; 2025 김성찬 All rights reserved.
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script>
+  AOS.init({ duration:800, once:true });
+  window.addEventListener('scroll',()=>{
+    const h=document.getElementById('header');
+    window.scrollY>50? h.classList.add('shrink'): h.classList.remove('shrink');
+  });
+</script>
 </body>
 </html>

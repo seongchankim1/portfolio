@@ -2,42 +2,175 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>킨도프 인턴 | 포트폴리오</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>킨도프 인턴 – 김성찬 포트폴리오</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
+  <!-- AOS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+  <!-- Prism.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Noto Sans KR',sans-serif;
+      background:linear-gradient(145deg,#f0f4f8,#e2e8f0);
+      overflow-x:hidden;
+      padding-top:100px;
+    }
+    header {
+      position:fixed; top:0; width:100%; z-index:100;
+      background: linear-gradient(90deg, #1e3c72, #667db6);
+      color:#fff; backdrop-filter:blur(10px);
+      transition:padding 0.3s, background 0.3s;
+      padding:1.5rem 1rem;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    }
+    header.shrink {
+      padding:0.8rem 1rem;
+      background:linear-gradient(90deg,#12243f,#445d8c);
+    }
+    .logo {
+      font-size:2rem; font-weight:700;
+      text-shadow:0 2px 5px rgba(0,0,0,0.3);
+      margin-bottom:0.5rem;
+    }
+    nav ul { display:flex; gap:2rem; list-style:none; }
+    nav a {
+      position:relative; color:#fff; font-weight:500;
+      text-decoration:none; padding:0.5rem;
+      transition:color 0.3s;
+    }
+    nav a::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:2px; background:#00e0ff;
+      transition:width 0.3s;
+    }
+    nav a:hover { color:#00e0ff; }
+    nav a:hover::after { width:100%; }
+    main { max-width:1000px; margin:0 auto; }
+    section {
+      margin:4rem 1.5rem; padding:2rem;
+      background:#fff; border-radius:12px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    }
+    .info-box {
+      display:flex; flex-direction:column; gap:0.5rem;
+      padding:1rem; background:#f4f7fb;
+      border:1px solid #dce6f0; border-radius:8px;
+      margin-bottom:2rem;
+    }
+    .info-box .label {
+      font-weight:bold; color:#007acc;
+      width:4rem; display:inline-block;
+    }
+    h2 {
+      font-size:2rem;
+      border-left:5px solid #3b82f6;
+      padding-left:0.7rem;
+      margin-bottom:1rem;
+    }
+    .project-links a { margin-right:1rem; color:#0066cc; }
+    h3 {
+      margin-top:2.5rem; color:#2c3e50;
+      border-bottom:2px solid #eee; padding-bottom:0.3rem;
+    }
+    .card {
+      background:#f9f9f9;
+      border-left:5px solid #007acc;
+      padding:1rem 1.5rem;
+      margin:1.5rem 0;
+      box-shadow:0 2px 5px rgba(0,0,0,0.05);
+      border-radius:6px;
+    }
+    .card-title {
+      font-size:1.2rem; font-weight:bold; color:#007acc;
+      border-bottom:1px solid #ccc;
+      margin-bottom:1rem; padding-bottom:0.3rem;
+    }
+    ul { padding-left:1.2rem; margin-bottom:1.5rem; }
+    pre {
+      background:#2d2d2d; padding:1rem;
+      overflow-x:auto; border-radius:6px;
+    }
+    code { font-size:0.95rem; color:#f8f8f2; }
+    footer {
+      text-align:center; padding:1rem;
+      margin:4rem 0; background:#f1f5f9;
+    }
+    @media(max-width:600px){
+      nav ul{flex-direction:column;gap:0.5rem;}
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>킨도프주식회사 인턴</h1>
-    <nav>
-      <a href="index.html">← Home</a>
-    </nav>
-  </header>
+<header id="header">
+  <div class="logo">김성찬 포트폴리오</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="itsmine.html">이츠마인</a></li>
+      <li><a href="projectmanager.html">Project Manager</a></li>
+      <li><a href="kindof.html">킨도프 인턴</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <main>
-    <h2>셀렙 패션 아이템 자동 식별 솔루션</h2>
-    <p><strong>기간</strong> : 24.10 ~ 24.12 / <strong>인원</strong> : 4명</p>
+<main>
+  <section data-aos="fade-up">
+    <h2 data-aos="fade-right">킨도프 인턴</h2>
+    <div class="info-box" data-aos="zoom-in">
+      <div><span class="label">📌 소개</span>셀럽 패션 사진 속 아이템을 자동 인식하는 솔루션</div>
+      <div><span class="label">🕒 기간</span>2024.10 ~ 2024.12</div>
+      <div><span class="label">👥 인원</span>4명 (BE 4)</div>
+    </div>
 
-    <section>
-      <h3>주요 역할</h3>
+    <h3 data-aos="fade-up">트러블슈팅</h3>
+
+    <div class="card" data-aos="fade-up">
+      <div class="card-title">게시글 페이징 처리 개선</div>
+      <p><strong>문제점:</strong> 대용량 게시글 조회 시 오프셋 기반 페이징으로 불필요한 데이터 스캔과 지연 발생</p>
+      <p><strong>대안 목록:</strong></p>
       <ul>
-        <li>실시간 인기 게시글: Redis로 조회수 집계</li>
-        <li>CQRS 기반 아키텍처: 읽기/쓰기 분리</li>
-        <li>로우셋 페이징 적용으로 대용량 성능 최적화</li>
+        <li>오프셋 방식 – 페이지 번호 증가 시 전체 스캔 발생</li>
+        <li>로우셋 방식 – WHERE 절 기반 조건 조회로 필요한 데이터만 조회</li>
+        <li>@Cacheable – 자주 조회되는 결과 캐싱</li>
       </ul>
-    </section>
+      <p><strong>구현:</strong> 마지막 조회 ID 기준 이후 데이터만 조회하도록 쿼리 재구성</p>
+      <p><strong>결과:</strong> 평균 응답 시간 1.5초 → 0.5초 단축</p>
+    </div>
 
-    <section>
-      <h3>트러블슈팅</h3>
-      <h4>페이징 처리 개선</h4>
-      <p>오프셋 → 로우셋 페이징 전환, 응답시간 1.5s → 0.5s</p>
-      <h4>CQRS 도입</h4>
-      <p>읽기 전용 슬레이브 DB 분리로 읽기 쿼리 40% 단축</p>
-    </section>
-  </main>
+    <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <div class="card-title">읽기/쓰기 분리 및 CQRS 최적화</div>
+      <p><strong>문제점:</strong> 단일 DB 환경에서 읽기·쓰기 충돌로 성능 저하 발생</p>
+      <p><strong>대안 목록:</strong></p>
+      <ul>
+        <li>단일 DB + 캐시 – 일관성 관리 이슈</li>
+        <li>마스터-슬레이브 구조 – 읽기·쓰기 분리 가능</li>
+        <li>CQRS 패턴 – 완전 분리, 복잡성 증가</li>
+      </ul>
+      <p><strong>선택:</strong> CQRS 도입 및 이벤트 기반 동기화</p>
+      <p><strong>구현:</strong> 쓰기 작업은 마스터 DB, 읽기는 슬레이브 DB로 분리</p>
+      <p><strong>결과:</strong> 읽기 응답 40% 단축, 처리량 30% 이상 향상</p>
+    </div>
+  </section>
+</main>
 
-  <footer>
-    <p>&copy; 2025 김성찬</p>
-  </footer>
+<footer data-aos="fade-up">
+  &copy; 2025 김성찬 All rights reserved.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({ duration:800, once:true });
+  window.addEventListener('scroll', () => {
+    const h = document.getElementById('header');
+    window.scrollY > 50 ? h.classList.add('shrink') : h.classList.remove('shrink');
+  });
+</script>
 </body>
 </html>

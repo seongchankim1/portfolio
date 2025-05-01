@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Manager | 포트폴리오</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Project Manager</h1>
+    <nav>
+      <a href="index.html">← Home</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>프로젝트 협업을 위한 작업 시각화 시스템</h2>
+    <p><strong>기간</strong> : 24.12 ~ 진행중 / <strong>인원</strong> : 4명 (BE 2, FE 2)</p>
+    <p>
+      코드 저장소 ▶ 
+      <a href="https://github.com/kanbanboardpm/projectmanager" target="_blank">GitHub</a>
+    </p>
+
+    <section>
+      <h3>주요 기술</h3>
+      <ul>
+        <li>CI/CD: Google Cloud + GitHub Actions + Docker</li>
+        <li>회원관리: 복합 인덱스 + QueryDSL (N+1 방지), 카카오 소셜 로그인</li>
+        <li>로그: AOP 기반 DB 저장, MySQL 파티셔닝</li>
+        <li>초대 기능: Redis List + JSON 저장</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>트러블슈팅</h3>
+      <h4>쿼리 최적화</h4>
+      <p>복합 인덱스 + QueryDSL 도입으로 1000만건 조회 시 2~3ms 성능 확보</p>
+      <h4>파티셔닝</h4>
+      <p>RANGE 파티셔닝 적용으로 오래된 데이터 DROP PARTITION으로 0.1초 삭제</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 김성찬</p>
+  </footer>
+</body>
+</html>

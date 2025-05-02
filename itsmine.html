@@ -133,17 +133,11 @@
                     </ul>
                 </li>
             </ul>
-        </div>
-
-        <div class="card" data-aos="fade-up" data-aos-delay="100">
             <div class="card-title">회원가입/로그인</div>
             <ul>
                 <li>Redis Lettuce (DB 조회 최소화 및 JWT/리프레시 토큰 관리)</li>
                 <li>카카오 소셜 로그인 (JWT/리프레시 토큰 관리)</li>
             </ul>
-        </div>
-
-        <div class="card" data-aos="fade-up" data-aos-delay="200">
             <div class="card-title">실시간 채팅</div>
             <ul>
                 <li>ActiveMQ, Async 처리, wss (Nginx 웹소켓 설정 적용)</li>
@@ -226,39 +220,6 @@ private String createDynamicKey(ProceedingJoinPoint joinPoint, String key) {
             <p><strong>선택 이유:</strong> RabbitMQ는 내장된 TTL과 DLX 기능을 제공하여 별도 추가 코딩 없이 메시지 지연 처리를 자동화 가능</p>
             <p><strong>결과:</strong> 평균 응답 시간 800ms → 250ms로 개선 (약 60% 속도 향상)</p>
         </div>
-
-        <div class="card" data-aos="fade-up" data-aos-delay="300">
-            <div class="card-title">CI/CD 배포 연동 문제</div>
-            <p><strong>문제점:</strong> EC2 내에서 Nginx와 프론트엔드가 동일 포트를 사용하여 충돌 및 수동 배포로 인한 다운타임 발생</p>
-            <p><strong>대안 목록:</strong></p>
-            <ul>
-                <li>Docker 컨테이너 분리 + Docker-Compose: 서비스별 독립 컨테이너 구성, 네트워크 유연성, 블루그린 배포로 무중단 지원</li>
-                <li>프론트엔드/백엔드 별도 Dockerfile + Docker-Compose: Nginx가 서비스 이름 기반 프록시</li>
-            </ul>
-            <p><strong>구현:</strong></p>
-            <pre><code class="language-nginx">upstream backend {
-  server backend:8080;
-}
-server {
-  listen 443 ssl;
-  location /v1/ {
-    proxy_pass http://backend;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-  }
-}</code></pre>
-            <p><strong>결과:</strong> 포트 충돌 및 서비스 연동 문제 완벽 해결</p>
-        </div>
-
-        <div class="card" data-aos="fade-up" data-aos-delay="400">
-            <div class="card-title">HTTPS 전환 시 채팅 연동 문제</div>
-            <p><strong>문제점:</strong> HTTPS 전환 후 ws(WebSocket) 연결 보안 문제로 실패</p>
-            <p><strong>대안 목록:</strong> wss 사용 → SSL 인증서로 보안 연결, Nginx 및 프론트엔드 설정 추가 필요</p>
-            <p><strong>구현:</strong> 프론트엔드 ws → wss 전환, Nginx에서 Upgrade/Connection 설정</p>
-            <p><strong>결과:</strong> HTTPS 환경에서도 안정적 실시간 채팅 가능</p>
-        </div>
-
     </section>
 </main>
 <footer data-aos="fade-up">

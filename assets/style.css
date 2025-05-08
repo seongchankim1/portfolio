@@ -312,22 +312,28 @@ footer {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
-  margin-top: 2rem;
-  padding: 0.8rem 1.2rem;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #eaf4ff, #f7fbff);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
+
 .tab-link {
   font-weight: 600;
-  color: #1e3a8a;
-  padding: 0.5rem 1rem;
+  color: #1d4ed8;
+  padding: 0.5rem 1.2rem;
   border-radius: 999px;
-  background: #d6efff;
-  transition: all 0.2s ease;
+  background: #dbeafe;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
+
 .tab-link:hover {
-  background: #bae6fd;
-  color: #0c4a6e;
+  background: linear-gradient(145deg, #c7d2fe, #bfdbfe);
+  color: #1e40af;
   transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+

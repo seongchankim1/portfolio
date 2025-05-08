@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b05babd-ba84-47ca-8ec5-bfadc2b95843" name="Changes" comment="포트폴리오 완성">
-      <change afterPath="$PROJECT_DIR$/assets/sidebar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/itsmine.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kyndof.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmanager.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/sidebar.html" afterDir="false" />
-    </list>
+    <list default="true" id="0b05babd-ba84-47ca-8ec5-bfadc2b95843" name="Changes" comment="포트폴리오 완성" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -390,7 +380,7 @@
       <workItem from="1746462061338" duration="611000" />
       <workItem from="1746538459650" duration="1403000" />
       <workItem from="1746590538660" duration="593000" />
-      <workItem from="1746680562458" duration="7056000" />
+      <workItem from="1746680562458" duration="7153000" />
     </task>
     <task id="LOCAL-00001" summary="포트폴리오 완성">
       <option name="closed" value="true" />
@@ -432,7 +422,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746688752123</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="포트폴리오 완성">
+      <option name="closed" value="true" />
+      <created>1746689536658</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746689536658</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Manager – Troubleshooting</title>
+
+    <!-- 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="/assets/style.css" />
+
+    <!-- AOS / Prism.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+<header id="header">
+    <div class="logo">김성찬 포트폴리오</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="itsmine-description.html">이츠마인</a></li>
+            <li><a href="projectmanager-description.html">Project Manager</a></li>
+            <li><a href="kyndof-description.html">커뮤니티 프로젝트</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="tab-menu" data-aos="fade-down">
+        <a href="projectmanager-description.html" class="tab-link">📘 프로젝트 설명</a>
+        <a href="projectmanager-stack.html" class="tab-link">🛠️ 기술</a>
+        <a href="projectmanager-troubleshooting.html" class="tab-link active">🐛 트러블슈팅</a>
+    </div>
+
+    <section id="troubleshooting" data-aos="fade-up">
+        <h2 data-aos="fade-up">트러블슈팅</h2>
+
+        <div class="card" data-aos="fade-up">
+            <div class="card-title">쿼리 최적화 및 데이터 접근 개선</div>
+            <p><strong>문제점:</strong> 복잡한 조인 및 연관관계, N+1 문제로 인해 대용량 데이터 조회 시 성능이 급격히 저하</p>
+            <p><strong>대안 목록:</strong></p>
+            <ul>
+                <li>단순 Join 사용: 인덱스 미적용 시 불필요한 전체 스캔 발생</li>
+                <li>복합 인덱스 + QueryDSL: 연속 조인 시에도 명확한 인덱스 적용으로 검색 속도 획기적 개선</li>
+                <li>Query Hint 활용: 특정 인덱스 사용 강제 가능하지만, 유지보수 복잡성 존재</li>
+            </ul>
+            <p><strong>선택:</strong> 복합 인덱스 추가 및 QueryDSL 활용, 상황에 따라 오프셋과 로우셋 페이징 기법 혼합 적용</p>
+            <p><strong>구현:</strong></p>
+            <pre><code class="language-java">@Table(name = "users", indexes = {
+  @Index(name = "idx_email", columnList = "email"),
+  @Index(name = "idx_nickname", columnList = "nickname")
+})
+public class User extends TimeStamp {
+
+  @Override
+  public List&lt;Authority&gt; findByProjectIdAndUserIds(Long projectId, List&lt;Long&gt; userIds) {
+    return queryFactory
+      .selectFrom(authority)
+      .join(authority.user).fetchJoin()
+      .where(
+        authority.project.id.eq(projectId),
+        authority.user.id.in(userIds)
+      )
+      .fetch();
+  }
+}</code></pre>
+            <p><strong>결과:</strong> 1,000만 이상의 User 조회 시에도 2~3ms 소요</p>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-title">데이터 파티셔닝 및 효율적 관리 문제</div>
+            <p><strong>문제점:</strong> 시간이 지날수록 로그 데이터가 누적되면서 전체 테이블 스캔으로 인한 성능 저하 발생</p>
+            <p><strong>대안 목록:</strong></p>
+            <ul>
+                <li>단순 인덱스 튜닝: 최근 로그 조회 쿼리는 개선되었지만, 전체 데이터가 많아질수록 효과가 떨어짐</li>
+                <li>캐싱: 로그는 변경이 자주 발생하지 않으므로 캐시 관리 복잡도가 올라감</li>
+                <li>파티셔닝: 데이터를 월별 또는 특정 기준으로 분리하여 저장하면, 쿼리 범위가 한정되어 성능 향상 가능</li>
+            </ul>
+            <p><strong>선택 및 구현:</strong> MySQL 파티셔닝을 도입하여 카드, 댓글 데이터를 분리 저장하고, 쿼리 시 파티션 프루닝(partition pruning)을 활용</p>
+            <p><strong>구현:</strong></p>
+            <pre><code class="language-sql">CREATE TABLE activity_log (
+  user_id BIGINT,
+  created_at DATETIME NOT NULL,
+  action_type VARCHAR(50),
+  action_detail TEXT,
+  PRIMARY KEY (user_id, created_at)
+)
+PARTITION BY RANGE (YEAR(created_at) * 100 + MONTH(created_at)) (
+  PARTITION p202502 VALUES LESS THAN (202502),
+  PARTITION p202503 VALUES LESS THAN (202503),
+  PARTITION pmax    VALUES LESS THAN MAXVALUE
+);</code></pre>
+            <p><strong>선택 이유:</strong> 통계, 리포트, 관리자 조회 등 특정 기간 조회에 최적</p>
+            <p><strong>결과:</strong> 최근 조회 쿼리 성능이 50% 이상 개선되었고, <code>created_at</code> 범위 조건을 활용한 파티션 프루닝 자동 적용, 오래된 데이터 삭제도 <code>DROP PARTITION</code>으로 수 밀리언 단위 데이터 삭제를 0.1초 내로 처리 가능</p>
+        </div>
+    </section>
+</main>
+
+<footer data-aos="fade-up">
+    &copy; 2025 김성찬 All rights reserved.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true });
+    window.addEventListener('scroll', () => {
+        const h = document.getElementById('header');
+        window.scrollY > 50 ? h.classList.add('shrink') : h.classList.remove('shrink');
+    });
+</script>
+</body>
+</html>

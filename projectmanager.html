@@ -4,59 +4,17 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Manager – 김성찬 포트폴리오</title>
+  <title>프로젝트</title>
+
+  <!-- 웹 폰트 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
-  <!-- AOS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
-  <!-- Prism -->
+
+  <!-- 공통 CSS -->
+  <link rel="stylesheet" href="/assets/style.css" />
+
+  <!-- AOS / Prism.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Noto Sans KR',sans-serif; background:linear-gradient(145deg,#f0f4f8,#e2e8f0); overflow-x:hidden; padding-top:100px; }
-    header {
-      position:fixed; top:0; width:100%; z-index:100;
-      background: linear-gradient(90deg, #1e3c72, #667db6);
-      color: #fff;
-      backdrop-filter:blur(10px);
-      transition:padding 0.3s, background 0.3s;
-      padding:1.5rem 1rem;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    header.shrink { padding:0.8rem 1rem; background:linear-gradient(90deg, #12243f, #445d8c); }
-    .logo {
-      font-size:2rem;
-      font-weight:700;
-      color:#fff;
-      text-shadow:0 2px 5px rgba(0,0,0,0.3);
-      margin-bottom:0.5rem;
-    }
-    nav ul { display:flex; gap:2rem; list-style:none; }
-    nav a { position:relative; color:#fff; font-weight:500; text-decoration:none; padding:0.5rem;
-      transition:color 0.3s;
-    }
-    nav a::after {
-      content:''; position:absolute; bottom:0; left:0;
-      width:0; height:2px; background:#00e0ff;
-      transition:width 0.3s;
-    }
-    nav a:hover { color:#00e0ff; }
-    nav a:hover::after { width:100%; }
-    main { max-width:1000px; margin:0 auto; }
-    section { margin:4rem 1.5rem; padding:2rem; background:#fff; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
-    .info-box { display:flex; flex-direction:column; gap:0.5rem; padding:1rem; background:#f4f7fb; border:1px solid #dce6f0; border-radius:8px; }
-    .info-box .label { font-weight:bold; color:#007acc; width:4rem; display:inline-block; }
-    h2 { font-size:2rem; border-left:5px solid #3b82f6; padding-left:0.7rem; margin-bottom:1rem; }
-    h3 { margin-top:2.5rem; color:#2c3e50; border-bottom:2px solid #eee; padding-bottom:0.3rem; }
-    .card { background:#f9f9f9; border-left:5px solid #007acc; padding:1rem 1.5rem; margin:1.5rem 0; box-shadow:0 2px 5px rgba(0,0,0,0.05); border-radius:6px; }
-    .card-title { font-size:1.2rem; font-weight:bold; color:#007acc; border-bottom:1px solid #ccc; margin-bottom:1rem; padding-bottom:0.3rem; }
-    ul { padding-left:1.2rem; margin-bottom:1.5rem; }
-    pre { background:#2d2d2d; padding:1rem; overflow-x:auto; border-radius:6px; }
-    code { font-size:0.95rem; color:#f8f8f2; }
-    footer { text-align:center; padding:1rem; margin:4rem 0; background:#f1f5f9; }
-    @media(max-width:600px){ nav ul{flex-direction:column;gap:0.5rem;} }
-  </style>
 </head>
 <body>
 <header id="header">
@@ -64,13 +22,20 @@
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="itsmine.html">이츠마인</a></li>
-      <li><a href="projectmanager.html">Project Manager</a></li>
-      <li><a href="kyndof.html">커뮤니티 프로젝트</a></li>
+      <li><a href="itsmine-description.html">이츠마인</a></li>
+      <li><a href="projectmanager-description.html">Project Manager</a></li>
+      <li><a href="kyndof-description.html">커뮤니티 프로젝트</a></li>
     </ul>
   </nav>
 </header>
+
+
 <main>
+  <div class="tab-menu" data-aos="fade-down">
+    <a href="itsmine-description.html" class="tab-link">📘 프로젝트 설명</a>
+    <a href="itsmine-stack.html" class="tab-link">🛠️ 기술</a>
+    <a href="itsmine-troubleshooting.html" class="tab-link">🐛 트러블슈팅</a>
+  </div>
   <section data-aos="fade-up">
     <h2 data-aos="fade-right">Project Manager</h2>
     <div class="info-box" data-aos="zoom-in">

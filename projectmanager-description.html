@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Manager – 프로젝트 설명</title>
+
+    <!-- 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="/assets/style.css" />
+
+    <!-- AOS / Prism.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+<header id="header">
+    <div class="logo">김성찬 포트폴리오</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="itsmine-description.html">이츠마인</a></li>
+            <li><a href="projectmanager-description.html">Project Manager</a></li>
+            <li><a href="kyndof-description.html">커뮤니티 프로젝트</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="tab-menu" data-aos="fade-down">
+        <a href="projectmanager-description.html" class="tab-link">📘 프로젝트 설명</a>
+        <a href="projectmanager-stack.html" class="tab-link">🛠️ 기술</a>
+        <a href="projectmanager-troubleshooting.html" class="tab-link">🐛 트러블슈팅</a>
+    </div>
+
+    <section id="description" data-aos="fade-up">
+        <h2 data-aos="fade-right">Project Manager 프로젝트 소개</h2>
+
+        <h3 data-aos="fade-up">한 줄 소개</h3>
+        <div class="info-box" data-aos="zoom-in">
+            <div><span class="label">📌</span>국내 사용자를 고려한 친숙한 UI의 칸반보드 협업 플랫폼</div>
+            <div><span class="label">🕒</span>2024.12 ~ 2025.04</div>
+            <div><span class="label">👥</span>4명 (백엔드 2, 프론트엔드 2)</div>
+            <div><span class="label">🔗</span>
+                <a href="https://github.com/kanbanboardpm/projectmanager" target="_blank">🔗 GitHub</a>
+                <a href="https://teampm.vercel.app/" target="_blank">📄 Page</a></div>
+        </div>
+        </div>
+
+        <div class="card" data-aos="fade-up">
+            <p>
+                Trello나 Jira와 같은 칸반보드 툴은 강력하지만, 국내 사용자에게는 인터페이스가 낯설고 접근성이 떨어지는 경우가 많습니다.
+                우리는 “누구나 쉽게 사용할 수 있는 협업 툴”을 만들자는 목표로 <strong>Project Manager</strong>를 기획했습니다.
+            </p>
+            <p>
+                이 프로젝트는 소규모 팀이나 사이드 프로젝트 환경에서 <strong>보다 직관적이고 빠르게 협업</strong>할 수 있도록 설계되었으며,
+                실시간 초대, 할 일 관리, 알림 수신함 등 <strong>실무 친화적인 기능</strong>을 중심으로 구현되었습니다.
+            </p>
+            <p>
+                다양한 프로젝트와 멤버들을 한 화면에서 관리하고, 사용자마다 <strong>개인 맞춤형 진행 상황</strong>을 확인할 수 있어
+                단순한 칸반보드를 넘어 <strong>협업 효율을 극대화하는 툴</strong>로 발전시켰습니다.
+            </p>
+        </div>
+
+        <h3 data-aos="fade-up">주요 기능</h3>
+        <div class="vertical-list" data-aos="fade-up">
+            <div class="vertical-card">
+                <div class="card-title">소셜 로그인</div>
+                <ul class="card-list">
+                    <li>카카오 로그인으로 누구나 쉽게 접근</li>
+                    <li>JWT 기반 인증 처리로 보안성과 편의성 확보</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">프로젝트 초대</div>
+                <ul class="card-list">
+                    <li>초대 코드 및 알림을 통해 팀원을 프로젝트에 초대</li>
+                    <li>초대 수락 시 자동 권한 할당 및 참여</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">알림 수신함</div>
+                <ul class="card-list">
+                    <li>초대, 권한 변경, 카드 이동 등 주요 이벤트 실시간 알림</li>
+                    <li>읽음 처리 및 알림 기록 기능 포함</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">개인별 진행도 관리</div>
+                <ul class="card-list">
+                    <li>개인에게 할당된 카드만 필터링하여 확인 가능</li>
+                    <li>To-Do / In-Progress / Done 칼럼 이동으로 직관적인 상태 관리</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer data-aos="fade-up">
+    &copy; 2025 김성찬 All rights reserved.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true });
+    window.addEventListener('scroll', () => {
+        const h = document.getElementById('header');
+        window.scrollY > 50 ? h.classList.add('shrink') : h.classList.remove('shrink');
+    });
+</script>
+</body>
+</html>

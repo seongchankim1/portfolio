@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Manager – 기술</title>
+
+    <!-- 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="/assets/style.css" />
+
+    <!-- AOS / Prism.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+<header id="header">
+    <div class="logo">김성찬 포트폴리오</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="itsmine-description.html">이츠마인</a></li>
+            <li><a href="projectmanager-description.html">Project Manager</a></li>
+            <li><a href="kyndof-description.html">커뮤니티 프로젝트</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="tab-menu" data-aos="fade-down">
+        <a href="projectmanager-description.html" class="tab-link">📘 프로젝트 설명</a>
+        <a href="projectmanager-stack.html" class="tab-link">🛠️ 기술</a>
+        <a href="projectmanager-troubleshooting.html" class="tab-link">🐛 트러블슈팅</a>
+    </div>
+
+    <section data-aos="fade-up">
+        <h2 data-aos="fade-up">개발 환경</h2>
+        <div class="card">
+            <ul>
+                <li><strong>Version:</strong> Java 17</li>
+                <li><strong>IDE:</strong> IntelliJ</li>
+                <li><strong>Framework:</strong> SpringBoot 3.3.0</li>
+                <li><strong>ORM:</strong> JPA</li>
+            </ul>
+        </div>
+
+        <h2 data-aos="fade-up">기술 스택</h2>
+        <div class="card">
+            <ul>
+                <li><strong>Computing:</strong> Google Cloud VM (Compute Engine), Docker</li>
+                <li><strong>Frontend:</strong> React</li>
+                <li><strong>Database:</strong> Google Cloud SQL (MySQL)</li>
+                <li><strong>Cache:</strong> Redis</li>
+                <li><strong>Storage:</strong> Google Cloud Storage (GCS)</li>
+            </ul>
+        </div>
+        <h2 data-aos="fade-right">전체 아키텍처</h2>
+        <div class="card" data-aos="zoom-in">
+            <img src="assets/projectmanager-architecture.png" alt="Project Manager 아키텍처"
+                 style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);"/>
+            <p style="margin-top:1rem;">
+                GitHub Actions 기반의 CI/CD 파이프라인, Redis 캐시 계층, Google Cloud 환경을 활용한 구성으로
+                <strong>개발 효율성과 운영 안정성</strong>을 동시에 고려한 구조입니다.
+            </p>
+        </div>
+        <h2 data-aos="fade-up">ERD 설계</h2>
+        <div class="card" data-aos="zoom-in">
+            <img src="assets/projectmanager-erd.png" alt="Project Manager ERD"
+                 style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);"/>
+            <p style="margin-top:1rem;">
+                프로젝트, 컬럼, 카드, 사용자 간의 관계를 <strong>정규화 원칙</strong>에 따라 명확히 정의하고,
+                <strong>복합 인덱스 기반의 빠른 검색과 조회 최적화</strong>를 위해 설계되었습니다.
+                초대 기능과 역할 관리(Authority)를 고려한 <strong>권한 기반 구조</strong>도 설계되었습니다.
+            </p>
+        </div>
+
+        <h2 data-aos="fade-up">기술 선택 이유 및 주요 구현</h2>
+        <div class="vertical-list">
+            <div class="vertical-card">
+                <div class="card-title">CI/CD – GitHub Actions + Docker</div>
+                <ul class="card-list">
+                    <li>개발 → GitHub → Actions → Docker 이미지 자동 빌드 및 VM 배포</li>
+                    <li>서버 수동 접근 최소화, 배포 속도 향상</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">회원 관리 – 복합 인덱스 + QueryDSL</div>
+                <ul class="card-list">
+                    <li>이름+이메일 기준 복합 인덱스로 <strong>검색 속도 향상</strong></li>
+                    <li>QueryDSL을 통해 조건식 복잡도 줄이고 유지보수성 강화</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">로그 시스템 – AOP + 파티셔닝</div>
+                <ul class="card-list">
+                    <li>AOP 기반 자동 로깅으로 핵심 로직과 관심사 분리</li>
+                    <li>로그 테이블을 월 단위로 파티셔닝 → <strong>관리 및 성능 최적화</strong></li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">초대 기능 – Redis 기반 구조</div>
+                <ul class="card-list">
+                    <li>List 자료구조와 JSON 형식을 혼합하여 초대 상태, 시간 등을 <strong>하나의 키에 저장</strong></li>
+                    <li>초대코드 생성 및 만료 시간 TTL 설정으로 불필요한 데이터 정리 가능</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">소셜 로그인 – Kakao</div>
+                <ul class="card-list">
+                    <li>OAuth2.0 기반으로 간편 로그인 구현</li>
+                    <li>JWT + Refresh Token으로 세션 유지를 처리함으로써 보안성과 편의성 확보</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer data-aos="fade-up">
+    &copy; 2025 김성찬 All rights reserved.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({ duration:800, once:true });
+    window.addEventListener('scroll', () => {
+        const h = document.getElementById('header');
+        window.scrollY > 50 ? h.classList.add('shrink') : h.classList.remove('shrink');
+    });
+</script>
+</body>
+</html>

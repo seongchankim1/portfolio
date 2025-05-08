@@ -1,3 +1,4 @@
+
 /* Reset & Base */
 * {
   margin: 0;
@@ -6,9 +7,11 @@
 }
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  background: #f4f6f9;
-  color: #222;
+  background: linear-gradient(145deg, #f0f4f8, #e2e8f0);
+  overflow-x: hidden;
+  padding-top: 100px;
   line-height: 1.7;
+  color: #222;
 }
 
 /* Typography, Links */
@@ -17,38 +20,100 @@ a:hover { text-decoration: underline; }
 
 /* Header & Navigation */
 header {
-  background: linear-gradient(135deg, #1e2a38, #3c5062);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: linear-gradient(90deg, #1e3c72, #667db6);
   color: white;
-  padding: 2rem 1rem;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: padding 0.3s, background 0.3s;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+header.shrink {
+  padding: 0.8rem 1rem;
+  background: linear-gradient(90deg, #12243f, #445d8c);
+}
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
 }
 nav ul {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-top: 1rem;
   list-style: none;
 }
-nav ul li a {
+nav a {
+  position: relative;
   color: #fff;
-  font-weight: bold;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem;
   transition: color 0.3s;
 }
-nav ul li a:hover {
-  color: #00e0ff;
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #00e0ff;
+  transition: width 0.3s;
+}
+nav a:hover { color: #00e0ff; }
+nav a:hover::after { width: 100%; }
+
+/* Project Subnav */
+.project-subnav {
+  background: linear-gradient(90deg, #1e3c72, #667db6);
+  padding: 0.5rem 0;
+  position: sticky;
+  top: 70px;
+  z-index: 90;
+}
+.project-subnav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.project-subnav a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background 0.3s, border-radius 0.3s;
+}
+.project-subnav a.active,
+.project-subnav a:hover {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
 }
 
 /* Layout */
 main {
-  max-width: 900px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  max-width: 1000px;
+  margin: 0 auto;
 }
-section { margin-bottom: 3rem; }
+section {
+  margin: 4rem 1.5rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
 
 /* Profile */
 .profile-img {
@@ -65,99 +130,14 @@ section { margin-bottom: 3rem; }
 /* Titles & Lists */
 h2 {
   margin-bottom: 1rem;
-  font-size: 1.4rem;
+  font-size: 2rem;
   color: #333;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 0.5rem;
+  border-left: 5px solid #3b82f6;
+  padding-left: 0.7rem;
 }
 ul { padding-left: 1.5rem; }
-.project-list li {
-  margin: 0.8rem 0;
-  font-size: 1.1rem;
-}
-.project-list li::before {
-  content: \"📁 \";
-}
 
-/* Footer */
-footer {
-  background: #e8ecef;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 4rem;
-  font-size: 0.9rem;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  main {
-    margin: 1.5rem;
-  }
-}
-
-.project-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
-.project-card {
-  width: 260px;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  text-align: center;
-  text-decoration: none;
-  transition: transform 0.2s;
-}
-.project-card:hover {
-  transform: translateY(-5px);
-}
-.project-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-.project-title {
-  padding: 1rem;
-  font-weight: bold;
-  color: #222;
-}
-.project-title small {
-  display: block;
-  font-weight: normal;
-  color: #777;
-  margin-top: 0.5rem;
-}
-.card {
-  background: #f7f7f7;
-  border-left: 4px solid #007acc;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-.info-box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
-  background-color: #f4f7fb;
-  border: 1px solid #dce6f0;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-}
-.info-box .label {
-  font-weight: bold;
-  color: #000000;
-  margin-right: 0.5rem;
-  display: inline-block;
-  width: 4rem;
-}
+/* Grid Cards */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -188,7 +168,33 @@ footer {
   text-align: center;
 }
 
-/* 기술 역량 태그 배지 스타일 */
+/* Info Boxes & Cards */
+.card {
+  background: #f7f7f7;
+  border-left: 4px solid #007acc;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #f4f7fb;
+  border: 1px solid #dce6f0;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+.info-box .label {
+  font-weight: bold;
+  color: #000000;
+  margin-right: 0.5rem;
+  display: inline-block;
+  width: 4rem;
+}
+
+/* 기술 태그 */
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
@@ -209,6 +215,7 @@ footer {
   background: #bae6fd;
   transform: translateY(-2px);
 }
+
 /* 공통 그리드 */
 .card-grid {
   display: grid;
@@ -216,8 +223,6 @@ footer {
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
-
-/* 카드 스타일 */
 .info-card {
   background: #ffffff;
   border-left: 5px solid #3b82f6;
@@ -230,8 +235,6 @@ footer {
   transform: translateY(-3px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
-
-/* 카드 내부 요소 */
 .card-title {
   font-size: 1.2rem;
   font-weight: 700;
@@ -251,16 +254,12 @@ footer {
 .card-list li {
   margin-bottom: 0.4rem;
 }
-
-/* 세로 나열 전용 컨테이너 */
 .vertical-list {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   margin-top: 1.5rem;
 }
-
-/* 세로 나열 카드 */
 .vertical-card {
   background: #ffffff;
   border-left: 4px solid #3b82f6;
@@ -273,8 +272,6 @@ footer {
   background: #f0f9ff;
   transform: translateY(-2px);
 }
-
-/* 카드 내부 */
 .vertical-card .card-title {
   font-size: 1.2rem;
   font-weight: 700;
@@ -292,3 +289,45 @@ footer {
   color: #334155;
 }
 
+/* Footer */
+footer {
+  background: #e8ecef;
+  text-align: center;
+  padding: 1rem;
+  margin: 4rem 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  main {
+    margin: 1.5rem;
+  }
+}
+.tab-menu {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 0.8rem 1.2rem;
+  background: #e5edf5;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.tab-link {
+  font-weight: 600;
+  color: #1e3a8a;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: #f0f9ff;
+  transition: all 0.2s ease;
+}
+.tab-link:hover {
+  background: #bae6fd;
+  color: #0c4a6e;
+  transform: translateY(-2px);
+}

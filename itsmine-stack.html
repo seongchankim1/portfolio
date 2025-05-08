@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이츠마인 – 기술</title>
+
+    <!-- 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="/assets/style.css" />
+
+    <!-- AOS / Prism.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+<header id="header">
+    <div class="logo">김성찬 포트폴리오</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="itsmine-description.html">이츠마인</a></li>
+            <li><a href="projectmanager-description.html">Project Manager</a></li>
+            <li><a href="kyndof-description.html">커뮤니티 프로젝트</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<main>
+    <div class="tab-menu" data-aos="fade-down">
+        <a href="itsmine-description.html" class="tab-link">📘 프로젝트 설명</a>
+        <a href="itsmine-stack.html" class="tab-link">🛠️ 기술</a>
+        <a href="itsmine-troubleshooting.html" class="tab-link">🐛 트러블슈팅</a>
+    </div>
+
+    <section data-aos="fade-up">
+        <h2 data-aos="fade-right">개발 환경</h2>
+        <div class="card">
+            <ul>
+                <li><strong>Version:</strong> Java 17</li>
+                <li><strong>IDE:</strong> IntelliJ</li>
+                <li><strong>Framework:</strong> SpringBoot 3.3.0</li>
+                <li><strong>ORM:</strong> JPA</li>
+            </ul>
+        </div>
+
+        <h2 data-aos="fade-up">기술 스택</h2>
+        <div class="card" data-aos="fade-up">
+            <ul style="margin-bottom: 0;">
+                <li><strong>Computing:</strong> AWS EC2, Docker</li>
+                <li><strong>Container & Image:</strong> ECR</li>
+                <li><strong>Frontend:</strong> React</li>
+                <li><strong>Database:</strong> AWS RDS (MariaDB)</li>
+                <li><strong>Cache:</strong> ElastiCache (Redis)</li>
+                <li><strong>Content Delivery:</strong> CloudFront</li>
+                <li><strong>Storage:</strong> AWS S3</li>
+            </ul>
+        </div>
+
+        <h2 data-aos="fade-up">전체 아키텍처</h2>
+        <div class="card" data-aos="zoom-in">
+            <img src="assets/itsmine-architecture.png" alt="이츠마인 아키텍처"
+                 style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);"/>
+            <p style="margin-top:1rem;">
+                CI/CD, 캐시 계층, 메시징 큐, 정적 자산 전송 등 실무형 요소들을 직접 도입하여
+                <strong>실제 서비스 수준의 안정성과 확장성</strong>을 갖춘 구조로 설계하였습니다.
+            </p>
+        </div>
+
+        <h2 data-aos="fade-up">ERD 설계</h2>
+        <div class="card" data-aos="zoom-in">
+            <img src="assets/itsmine-erd.png" alt="이츠마인 ERD"
+                 style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);"/>
+            <p style="margin-top:1rem;">
+                상품, 경매, 입찰, 회원, 채팅 등 각 기능의 관계를 명확히 정의한 ERD입니다.
+                <strong>정규화와 성능을 동시에 고려</strong>하여, 조회 효율성과 확장성을 확보하였습니다.
+            </p>
+        </div>
+
+        <h2 data-aos="fade-up">기술 선택 이유 및 주요 구현</h2>
+        <div class="vertical-list">
+            <div class="vertical-card">
+                <div class="card-title">Redis 분산 락 – Redisson</div>
+                <ul class="card-list">
+                    <li>입찰 시 동시에 여러 사용자가 접근하므로, <strong>공정성과 정확성</strong>을 위해 Redisson의 FairLock 기능 사용</li>
+                    <li>AOP + Annotation으로 재사용성 높은 코드 구성</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">RabbitMQ vs Kafka</div>
+                <ul class="card-list">
+                    <li>TTL과 DLX 기능을 지원하는 RabbitMQ가 <strong>지연 메시지 처리</strong>에 적합</li>
+                    <li>Kafka는 대용량 스트리밍에는 강점이 있으나, 이 프로젝트는 <strong>즉시성</strong>과 <strong>간결한 설정</strong>이 우선</li>
+                    <li>따라서 TTL + DLX로 경매 마감 시점 처리에 RabbitMQ를 사용</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">ActiveMQ – 실시간 채팅</div>
+                <ul class="card-list">
+                    <li>웹소켓 기반 채팅을 위해 ActiveMQ의 Topic 모델 사용</li>
+                    <li>React + Spring + ActiveMQ의 연동을 통해 빠른 메시지 전파와 확장성 확보</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">@Cacheable + QueryDSL</div>
+                <ul class="card-list">
+                    <li>읽기 요청이 잦은 데이터는 캐시로 대응하여 DB 부하를 낮춤</li>
+                    <li>복잡한 조건 검색을 위해 QueryDSL을 적용 → 코드 가독성과 유지보수 향상</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">카카오 소셜 로그인</div>
+                <ul class="card-list">
+                    <li>사용자 진입 장벽을 낮추기 위해 소셜 로그인 적용</li>
+                    <li>JWT와 리프레시 토큰을 통해 인증 유지 및 자동 재발급 처리</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer data-aos="fade-up">
+    &copy; 2025 김성찬 All rights reserved.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({duration: 800, once: true});
+    window.addEventListener('scroll', () => {
+        const h = document.getElementById('header');
+        window.scrollY > 50 ? h.classList.add('shrink') : h.classList.remove('shrink');
+    });
+</script>
+</body>
+</html>

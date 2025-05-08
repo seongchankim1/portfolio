@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>커뮤니티 프로젝트 – 프로젝트 설명</title>
+
+    <!-- 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="/assets/style.css" />
+
+    <!-- AOS / Prism.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+</head>
+<body>
+<header id="header">
+    <div class="logo">김성찬 포트폴리오</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="itsmine-description.html">이츠마인</a></li>
+            <li><a href="projectmanager-description.html">Project Manager</a></li>
+            <li><a href="kyndof-description.html">커뮤니티 프로젝트</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="tab-menu" data-aos="fade-down">
+        <a href="kyndof-description.html" class="tab-link">📘 프로젝트 설명</a>
+        <a href="kyndof-stack.html" class="tab-link">🛠️ 기술</a>
+        <a href="kyndof-troubleshooting.html" class="tab-link">🐛 트러블슈팅</a>
+    </div>
+
+    <section id="description" data-aos="fade-up">
+
+        <h2 data-aos="fade-right">커뮤니티 프로젝트 소개</h2>
+
+        <h3 data-aos="fade-up">한 줄 소개</h3>
+        <div class="info-box" data-aos="zoom-in">
+            <div><span class="label">📌</span>셀럽 패션 정보를 공유하고 검색할 수 있는 커뮤니티형 플랫폼</div>
+            <div><span class="label">🕒</span>2024.10 ~ 2024.12</div>
+            <div><span class="label">👥</span>4명 (백엔드 전담)</div>
+        </div>
+
+        <div class="card" data-aos="fade-up">
+            <p>
+                유명인의 착장 정보를 공유하고 싶다는 아이디어에서 출발해, 셀럽의 사진 속 패션 정보를 확인하고 질문할 수 있는 커뮤니티형 플랫폼을 기획했습니다.
+                기존 SNS나 블로그에서는 패션 정보를 일관되게 제공받기 어려운 불편함이 있었고, 사용자 친화적인 접근성과 자동화된 데이터 수집이 가능한 구조로 개선하고자 하였습니다.
+            </p>
+            <p>
+                이 서비스는 일반 사용자가 셀럽 패션 사진을 업로드하면 다른 유저들이 클릭하여 정보를 입력하거나 조회할 수 있도록 되어 있으며,
+                실시간 트렌드를 반영한 백오피스를 통해 운영 효율성을 극대화할 수 있도록 구성했습니다.
+            </p>
+        </div>
+
+        <h3 data-aos="fade-up">주요 기능</h3>
+        <div class="vertical-list" data-aos="fade-up">
+
+            <div class="vertical-card">
+                <div class="card-title">상품 정보 태깅</div>
+                <ul class="card-list">
+                    <li>사용자가 이미지를 업로드하고 클릭하면 좌표 기반으로 아이템 정보를 입력할 수 있습니다.</li>
+                    <li>아이템명, 브랜드, 셀럽명, 링크, 판매 이미지 등을 등록하여 타인과 공유할 수 있습니다.</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">게시글 및 질문 게시판</div>
+                <ul class="card-list">
+                    <li>워드프레스를 활용하여 이미지 기반 게시글을 작성하고 질문할 수 있습니다.</li>
+                    <li>검색 기능을 통해 셀럽명, 상품명 등으로 게시글을 탐색할 수 있습니다.</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">회원 관리 및 다국어 지원</div>
+                <ul class="card-list">
+                    <li>회원가입, 로그인, 프로필 기능 제공</li>
+                    <li>영어 및 한국어 기반 다국어 지원을 통해 글로벌 사용자를 타깃팅합니다.</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">백오피스 관리 기능</div>
+                <ul class="card-list">
+                    <li>1주일간 최다 조회/좋아요 게시물 Top 10 자동 분석</li>
+                    <li>최근 등록된 게시물에서 가장 많이 언급된 브랜드, 셀럽, 상품 분류 통계</li>
+                    <li>스프레드시트/CSV로 추출 가능하며, 셀럽 및 게시물 관리 기능도 포함</li>
+                </ul>
+            </div>
+
+            <div class="vertical-card">
+                <div class="card-title">인기 게시글 조회</div>
+                <ul class="card-list">
+                    <li>Redis를 활용해 실시간으로 게시물 조회수를 기록하며, 최근 일주일 간의 인기 게시물을 캐싱 기반으로 빠르게 제공합니다.</li>
+                    <li>조회수, 좋아요 수, 댓글 수 등 다양한 기준으로 정렬하여 사용자에게 트렌드 콘텐츠를 제공합니다.</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </section>
+</main>
+
+<footer data-aos="fade-up">
+    &copy; 2025 김성찬 All rights reserved.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({ duration:800, once:true });
+    window.addEventListener('scroll', () => {
+        const h = document.getElementById('header');
+        window.scrollY > 50 ? h.classList.add('shrink') : h.classList.remove('shrink');
+    });
+</script>
+</body>
+</html>

@@ -2,154 +2,630 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>김성찬 포트폴리오</title>
+  <title>김성찬 — Backend Developer</title>
+  <meta name="description" content="Java · Spring Boot 백엔드 개발자 김성찬의 포트폴리오" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
-  <!-- 웹 폰트 -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;510;600;590&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- 공통 CSS -->
-  <link rel="stylesheet" href="./assets/style.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <!-- AOS / Prism.js -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+    :root {
+      --bg: #08090a;
+      --surface-1: #0f1011;
+      --surface-2: #191a1b;
+      --surface-3: #28282c;
+      --text-primary: #f7f8f8;
+      --text-secondary: #b0b6c0;
+      --text-muted: #8a8f98;
+      --text-faint: #62666d;
+      --accent: #5e6ad2;
+      --accent-light: #7170ff;
+      --accent-hover: #828fff;
+      --border: rgba(255,255,255,0.06);
+      --border-light: rgba(255,255,255,0.10);
+      --success: #27a644;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+    body {
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 3px; }
+
+    /* ── Header ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,9,10,0.8);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px;
+      transition: background 0.3s;
+    }
+    .logo {
+      font-size: 15px; font-weight: 510; color: var(--text-primary);
+      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 6px rgba(39,166,68,0.6);
+    }
+    nav { display: flex; gap: 4px; }
+    nav a {
+      color: var(--text-muted);
+      font-size: 13px; font-weight: 510;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+
+    /* ── Sections ── */
+    section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 120px 32px 80px;
+    }
+    section:first-of-type { padding-top: 100px; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-size: 32px; font-weight: 600;
+      letter-spacing: -0.704px;
+      margin-bottom: 32px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding-top: 80px;
+      padding-bottom: 64px;
+    }
+    .hero-avatar {
+      width: 112px; height: 112px;
+      border-radius: 50%;
+      border: 2px solid var(--border-light);
+      object-fit: cover;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 48px; font-weight: 600;
+      letter-spacing: -1.056px;
+      margin-bottom: 12px;
+    }
+    .hero .subtitle {
+      font-size: 18px; color: var(--text-secondary);
+      max-width: 560px; margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .hero .cta-row {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px; font-weight: 510;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-light);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); color: var(--text-primary); }
+
+    /* ── Skill Grid ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .skill-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .skill-card:hover {
+      border-color: var(--border-light);
+      background: rgba(255,255,255,0.04);
+      transform: translateY(-2px);
+    }
+    .skill-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .skill-name {
+      font-size: 13px; font-weight: 510;
+      color: var(--text-secondary);
+    }
+
+    /* ── Project Cards ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .project-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+    }
+    .project-header {
+      display: flex; align-items: flex-start; gap: 20px;
+      padding: 28px;
+    }
+    .project-icon {
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .project-meta h3 {
+      font-size: 20px; font-weight: 590;
+      letter-spacing: -0.24px;
+      margin-bottom: 4px;
+    }
+    .project-meta .period {
+      font-size: 13px; color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .project-meta p {
+      font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+    }
+    .project-body {
+      padding: 0 28px 28px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .project-body h4 {
+      font-size: 13px; font-weight: 590;
+      letter-spacing: -0.12px;
+      margin-bottom: 12px;
+    }
+    .feature-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .feature-list li {
+      font-size: 13px; color: var(--text-secondary);
+      background: rgba(255,255,255,0.03);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+    }
+    .tech-list { margin-bottom: 16px; }
+    .tech-list li {
+      font-size: 13px; color: var(--text-muted);
+      padding: 2px 0;
+      list-style: disc;
+      margin-left: 16px;
+    }
+    .project-links { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+    .link-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 510;
+      color: var(--accent-light);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .link-btn:hover { background: rgba(94,106,210,0.1); border-color: var(--accent); }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 5px; top: 8px; bottom: 8px;
+      width: 1px; background: var(--border-light);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -28px; top: 8px;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .timeline-item .t-title {
+      font-size: 15px; font-weight: 590;
+      margin-bottom: 2px;
+    }
+    .timeline-item .t-date {
+      font-size: 13px; color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 6px;
+    }
+    .timeline-item .t-desc {
+      font-size: 14px; color: var(--text-secondary);
+    }
+
+    /* ── Contact ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-card:hover {
+      border-color: var(--border-light);
+      background: rgba(255,255,255,0.04);
+    }
+    .contact-card .c-icon { font-size: 20px; }
+    .contact-card .c-label { font-size: 12px; color: var(--text-muted); }
+    .contact-card .c-value { font-size: 14px; color: var(--text-primary); font-weight: 510; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 40px 32px;
+      border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--text-faint);
+    }
+
+    /* ── Fade In (scroll) ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Glow effect ── */
+    .glow {
+      position: absolute;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(94,106,210,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      header { padding: 0 16px; }
+      nav a { padding: 6px 8px; font-size: 12px; }
+      section { padding: 100px 20px 64px; }
+      .hero h1 { font-size: 32px; letter-spacing: -0.704px; }
+      .hero .subtitle { font-size: 16px; }
+      .skills-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+      .project-header { flex-direction: column; gap: 12px; padding: 20px; }
+      .project-body { padding: 0 20px 20px; padding-top: 16px; }
+    }
+    @media (max-width: 480px) {
+      nav { gap: 0; }
+      nav a { padding: 6px 6px; font-size: 12px; }
+      .hero h1 { font-size: 28px; }
+    }
+  </style>
 </head>
 <body>
-<header id="header">
-  <div class="logo">김성찬 포트폴리오</div>
+
+<div class="glow" style="top:-200px; left:50%; transform:translateX(-50%);"></div>
+
+<!-- ── Header ── -->
+<header>
+  <div class="logo"><span class="dot"></span> 김성찬</div>
   <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="itsmine-description.html">이츠마인</a></li>
-      <li><a href="projectmanager-description.html">Project Manager</a></li>
-      <li><a href="kyndof-description.html">커뮤니티 프로젝트</a></li>
-    </ul>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#activities">Activities</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
-
-<main>
-  <section id="one" data-aos="fade-up">
-    <img src="assets/profile.png" alt="프로필 사진" class="profile-img" data-aos="zoom-in"/>
-    <h2 data-aos="fade-right">About Me</h2>
-    <p data-aos="fade-left" style="text-align:center;">
-      사람들은 <strong>‘잘 하는 일’</strong>과 <strong>‘좋아하는 일’</strong> 중에 선택하곤 합니다.<br>
-      저는 두 마리 토끼를 잡을 수 있는 <strong>개발자의 길</strong>을 택했고, 단 한 번도 후회한 적이 없습니다.<br>
-      <strong>새로운 기술</strong>을 배우고 실제 프로젝트에 적용하며 성장하는 과정을 즐깁니다.
+<!-- ── Hero ── -->
+<section class="hero" id="hero">
+  <div class="fade-in">
+    <img src="assets/profile.png" alt="프로필" class="hero-avatar"
+         onerror="this.style.background='var(--surface-2)'; this.style.display='flex'; this.alt='SK';" />
+    <h1>Backend Developer</h1>
+    <p class="subtitle">
+      사람들은 <strong>잘 하는 일</strong>과 <strong>좋아하는 일</strong> 중에 선택하곤 합니다.<br>
+      저는 두 마리를 모두 잡을 수 있는 <strong>개발자의 길</strong>을 택했습니다.<br>
+      새로운 기술을 배우고 프로젝트에 적용하며 성장을 즐깁니다.
     </p>
-  </section>
-  <section id="two" data-aos="zoom-in">
+    <div class="cta-row">
+      <a href="mailto:minielec7@gmail.com" class="btn btn-primary">邮件 Contact</a>
+      <a href="https://github.com/seongchankim1" target="_blank" class="btn btn-ghost">GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ── -->
+<section id="skills">
+  <div class="fade-in">
+    <div class="section-label">001 — Skills</div>
     <h2>기술 역량</h2>
-    <div class="skill-tags">
-      <span class="tag">Java</span>
-      <span class="tag">Spring Boot</span>
-      <span class="tag">MySQL</span>
-      <span class="tag">Redis</span>
-      <span class="tag">AWS</span>
-      <span class="tag">MariaDB</span>
-      <span class="tag">MongoDB</span>
-      <span class="tag">GitHub</span>
-      <span class="tag">Notion</span>
-      <span class="tag">Slack</span>
-      <span class="tag">Docker</span>
-      <span class="tag">RabbitMQ</span>
-      <span class="tag">Kafka</span>
-    </div>
-  </section>
+  </div>
+  <div class="skills-grid fade-in">
+    <div class="skill-card"><span class="skill-icon">☕</span><span class="skill-name">Java</span></div>
+    <div class="skill-card"><span class="skill-icon">⚡</span><span class="skill-name">Spring Boot</span></div>
+    <div class="skill-card"><span class="skill-icon">🐘</span><span class="skill-name">MySQL</span></div>
+    <div class="skill-card"><span class="skill-icon">🔴</span><span class="skill-name">Redis</span></div>
+    <div class="skill-card"><span class="skill-icon">☁️</span><span class="skill-name">AWS</span></div>
+    <div class="skill-card"><span class="skill-icon">🐦</span><span class="skill-name">MariaDB</span></div>
+    <div class="skill-card"><span class="skill-icon">🍃</span><span class="skill-name">MongoDB</span></div>
+    <div class="skill-card"><span class="skill-icon">🐙</span><span class="skill-name">GitHub</span></div>
+    <div class="skill-card"><span class="skill-icon">🐳</span><span class="skill-name">Docker</span></div>
+    <div class="skill-card"><span class="skill-icon">🐕</span><span class="skill-name">RabbitMQ</span></div>
+    <div class="skill-card"><span class="skill-icon">📨</span><span class="skill-name">Kafka</span></div>
+    <div class="skill-card"><span class="skill-icon">🔧</span><span class="skill-name">JPA</span></div>
+    <div class="skill-card"><span class="skill-icon">🔍</span><span class="skill-name">QueryDSL</span></div>
+    <div class="skill-card"><span class="skill-icon">🔗</span><span class="skill-name">CI/CD</span></div>
+    <div class="skill-card"><span class="skill-icon">🌐</span><span class="skill-name">React</span></div>
+    <div class="skill-card"><span class="skill-icon">📊</span><span class="skill-name">GCP</span></div>
+  </div>
+</section>
 
-  <section id="three" data-aos="fade-up">
-    <h2>Projects</h2>
-    <div class="project-grid">
-      <a href="itsmine-description.html" class="project-card" data-aos="flip-left">
-        <img src="assets/thumb_itsmine.png" alt="이츠마인 썸네일">
-        <div class="project-title">이츠마인</div>
-      </a>
-      <a href="projectmanager-description.html" class="project-card" data-aos="flip-left" data-aos-delay="100">
-        <img src="assets/thumb_projectmanager.png" alt="Project Manager 썸네일">
-        <div class="project-title">Project Manager</div>
-      </a>
-      <a href="kyndof-description.html" class="project-card" data-aos="flip-left" data-aos-delay="200">
-        <img src="assets/thumb_kyndof.png" alt="킨도프 인턴 썸네일">
-        <div class="project-title">커뮤니티 프로젝트</div>
-      </a>
-    </div>
-  </section>
-  <!-- Activities -->
-  <section id="activities" data-aos="fade-up">
-    <h2 data-aos="fade-right">활동</h2>
-    <div class="vertical-list" data-aos="fade-up">
-      <div class="vertical-card">
-        <div class="card-title">멘사코리아 개발 SIG</div>
-        <div class="card-period">2025.04 ~</div>
-        <ul class="card-list">
-          <li>‘모개숲’ 백엔드 스터디 및 프로젝트</li>
+<!-- ── Projects ── -->
+<section id="projects">
+  <div class="fade-in">
+    <div class="section-label">002 — Projects</div>
+    <h2>프로젝트</h2>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Project 1: ItsMine -->
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">🏷️</div>
+        <div class="project-meta">
+          <h3>이츠마인 — 실시간 경매 중고거래 플랫폼</h3>
+          <div class="period">2024.07 ~ 2024.08 · 5인 팀 · 백엔드 전담</div>
+          <p>실시간 경매 기반 중고 거래 플랫폼. 사용자는 경매에 등록하고 최고가 입찰자에게 자동 판매됩니다. 즉시 구매가, 실시간 채팅을 지원하며 경매 중에도 자유롭게 소통할 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>주요 기능</h4>
+        <ul class="feature-list">
+          <li>실시간 경매 &amp; 자동 판매</li>
+          <li>즉시 구매</li>
+          <li>실시간 채팅</li>
+          <li>Redis 분산 락 (Redisson)</li>
+          <li>RabbitMQ TTL+DLX</li>
+          <li>카카오 소셜 로그인</li>
         </ul>
-        <div class="card-title">킨도프주식회사 인턴</div>
-        <div class="card-period">2024.11 ~ 2024.12</div>
-        <ul class="card-list">
-          <li>백엔드 개발자 인턴</li>
+        <h4>기술 스택</h4>
+        <ul class="tech-list">
+          <li>Java 17 · Spring Boot 3.3 · JPA · QueryDSL</li>
+          <li>AWS EC2 · Docker · ECR · RDS(MariaDB) · ElastiCache(Redis) · CloudFront · S3</li>
+          <li>React · ActiveMQ · Redisson</li>
         </ul>
-        <div class="card-title">내일배움캠프</div>
-        <div class="card-period">2024.04 ~ 2024.08</div>
-        <ul class="card-list">
-          <li>백엔드 개발자 양성과정(Java) 수료</li>
-          <li>Java Spring 학습</li>
+        <h4>트러블슈팅</h4>
+        <ul class="tech-list">
+          <li>동시성 문제: Redisson FairLock + AOP Annotation으로 분산락 해결 (10명+ 동시 입찰에서 100% 데이터 무결성)</li>
+          <li>알림 지연: RabbitMQ TTL+DLX 도입으로 응답 시간 800ms → 250ms 개선 (약 60%)</li>
         </ul>
-        <div class="card-title">개인 유튜브 운영</div>
-        <div class="card-period">2019 ~ 2024</div>
-        <ul class="card-list">
-          <li>구독자 20만명 달성</li>
-        </ul>
+        <div class="project-links">
+          <a href="https://youtu.be/ZirbEetGmtY" target="_blank" class="link-btn">▶️ 시연영상</a>
+          <a href="https://github.com/11-itsmine/itsmine" target="_blank" class="link-btn">🔗 GitHub</a>
+          <a href="https://www.notion.so/faf10b31eec04c97a18819caad6e1a54" target="_blank" class="link-btn">📄 Notion</a>
+        </div>
       </div>
     </div>
-  </section>
 
-
-  <!-- Education -->
-  <section id="education" data-aos="fade-up">
-    <h2 data-aos="fade-right">학력</h2>
-    <div class="card-grid" data-aos="fade-up">
-      <div class="info-card">
-        <div class="card-title">순천향대학교</div>
-        <div class="card-period">2021.03 ~ 2024.08</div>
-        <ul class="card-list">
-          <li>법학과 졸업</li>
-        </ul>
+    <!-- Project 2: Project Manager -->
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">📋</div>
+        <div class="project-meta">
+          <h3>Project Manager — 칸반보드 협업 플랫폼</h3>
+          <div class="period">2024.12 ~ 2025.04 · 4인 팀 (BE 2 / FE 2)</div>
+          <p>Trello/Jira의 복잡함을 줄여 국내 사용자에게 친숙한 UI를 제공합니다. 실시간 초대, 할일 관리, 알림 등 실무 친화적인 기능을 중심으로 구현했습니다.</p>
+        </div>
       </div>
-      <div class="info-card">
-        <div class="card-title">백석예술대학교</div>
-        <div class="card-period">2017.03 ~ 2021.02</div>
-        <ul class="card-list">
-          <li>음악학부 졸업</li>
+      <div class="project-body">
+        <h4>주요 기능</h4>
+        <ul class="feature-list">
+          <li>카카오 소셜 로그인 (JWT)</li>
+          <li>프로젝트 초대 &amp; 권한 관리</li>
+          <li>알림 수신함</li>
+          <li>개인별 진행도 관리</li>
         </ul>
+        <h4>기술 스택</h4>
+        <ul class="tech-list">
+          <li>Java 17 · Spring Boot 3.3 · JPA · QueryDSL</li>
+          <li>Google Cloud (Compute Engine · Cloud SQL(MySQL) · GCS)</li>
+          <li>Docker · GitHub Actions CI/CD · Redis</li>
+          <li>React</li>
+        </ul>
+        <h4>트러블슈팅</h4>
+        <ul class="tech-list">
+          <li>쿼리 최적화: 복합 인덱스 + QueryDSL로 1,000만+ User 조회 2~3ms 달성</li>
+          <li>데이터 파티셔닝: MySQL 월별 파티션으로 조회 성능 50%+ 개선, 0.1초 내 대량 삭제</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/kanbanboardpm/projectmanager" target="_blank" class="link-btn">🔗 GitHub</a>
+          <a href="https://teampm.vercel.app/" target="_blank" class="link-btn">🌐 서비스</a>
+        </div>
       </div>
     </div>
-  </section>
 
+    <!-- Project 3: Kyndof -->
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">✨</div>
+        <div class="project-meta">
+          <h3>커뮤니티 프로젝트 — 셀럽 패션 정보 플랫폼</h3>
+          <div class="period">2024.10 ~ 2024.12 · 4인 팀 · 백엔드 전담</div>
+          <p>유명인 착장 정보를 공유하고 확인하는 커뮤니티형 플랫폼. 이미지 클릭 기반 상품 태깅, 백오피스 통계 대시보드, 다국어 지원을 제공합니다.</p>
+        </div>
+      </div>
+      <div class="project-body">
+        <h4>주요 기능</h4>
+        <ul class="feature-list">
+          <li>상품 정보 태깅 (좌표 기반)</li>
+          <li>게시글 &amp; 질문 게시판</li>
+          <li>백오피스 통계 대시보드</li>
+          <li>다국어 지원 (KR/EN)</li>
+          <li>Redis 실시간 인기 게시글</li>
+        </ul>
+        <h4>기술 스택</h4>
+        <ul class="tech-list">
+          <li>AWS Lightsail · WordPress (PHP) · MySQL · Redis</li>
+          <li>Polylang (다국어)</li>
+        </ul>
+        <h4>트러블슈팅</h4>
+        <ul class="tech-list">
+          <li>페이징 개선: 로우셋 페이징 + @Cacheable로 응답 시간 1.5초 → 0.5초</li>
+          <li>CQRS 도입: 읽기/쓰기 DB 분리로 읽기 응답 40% 단축, 처리량 30%+ 개선</li>
+        </ul>
+        <div class="project-links">
+          <a href="mailto:minielec7@gmail.com" class="link-btn">📧 문의</a>
+        </div>
+      </div>
+    </div>
 
-  <section id="four" data-aos="fade-up">
-    <h2>Contact</h2>
-    <ul>
-      <li>📱 Phone : 010-8740-1552</li>
-      <li>📧 Email : <a href="mailto:minielec7@gmail.com">minielec7@gmail.com</a></li>
-      <li>🔗 GitHub : <a href="https://github.com/seongchankim1" target="_blank">github.com/seongchankim1</a></li>
-    </ul>
-  </section>
-</main>
-<footer data-aos="fade-up">
-  &copy; 2025 김성찬 All rights reserved.
+  </div>
+</section>
+
+<!-- ── Activities ── -->
+<section id="activities">
+  <div class="fade-in">
+    <div class="section-label">003 — Activities</div>
+    <h2>활동 &amp; 이력</h2>
+  </div>
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="t-title">멘사코리아 개발 SIG</div>
+      <div class="t-date">2025.04 ~</div>
+      <div class="t-desc">'모개숲' 백엔드 스터디 및 프로젝트 참여</div>
+    </div>
+    <div class="timeline-item">
+      <div class="t-title">킨도프주식회사 인턴</div>
+      <div class="t-date">2024.11 ~ 2024.12</div>
+      <div class="t-desc">백엔드 개발자 인턴</div>
+    </div>
+    <div class="timeline-item">
+      <div class="t-title">내일배움캠프</div>
+      <div class="t-date">2024.04 ~ 2024.08</div>
+      <div class="t-desc">백엔드 개발자 양성과정 (Java) 수료 · Java Spring 학습</div>
+    </div>
+    <div class="timeline-item">
+      <div class="t-title">개인 유튜브 운영</div>
+      <div class="t-date">2019 ~ 2024</div>
+      <div class="t-desc">구독자 20만명 달성</div>
+    </div>
+    <div class="timeline-item">
+      <div class="t-title">순천향대학교 · 법학과 졸업</div>
+      <div class="t-date">2021.03 ~ 2024.08</div>
+      <div class="t-desc">법학과 학사</div>
+    </div>
+    <div class="timeline-item">
+      <div class="t-title">백석예술대학교 · 음악학부 졸업</div>
+      <div class="t-date">2017.03 ~ 2021.02</div>
+      <div class="t-desc">음악학부 학사</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section id="contact">
+  <div class="fade-in">
+    <div class="section-label">004 — Contact</div>
+    <h2>문의하기</h2>
+  </div>
+  <div class="contact-grid fade-in">
+    <a href="mailto:minielec7@gmail.com" class="contact-card">
+      <span class="c-icon">📧</span>
+      <div>
+        <div class="c-label">Email</div>
+        <div class="c-value">minielec7@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://github.com/seongchankim1" target="_blank" class="contact-card">
+      <span class="c-icon">🐙</span>
+      <div>
+        <div class="c-label">GitHub</div>
+        <div class="c-value">github.com/seongchankim1</div>
+      </div>
+    </a>
+    <a href="tel:01087401552" class="contact-card">
+      <span class="c-icon">📱</span>
+      <div>
+        <div class="c-label">Phone</div>
+        <div class="c-value">010-8740-1552</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  &copy; 2025 김성찬 &middot; All rights reserved.
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<!-- ── Scroll Fade-In ── -->
 <script>
-  AOS.init({ duration: 800, once: true });
-  window.addEventListener('scroll', () => {
-    const h = document.getElementById('header');
-    window.scrollY > 50 ? h.classList.add('shrink') : h.classList.remove('shrink');
-  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
